@@ -58,7 +58,8 @@ public class CouponViewModel extends ViewModel {
         //Call retrofit client on background thread and update database with response from service using Room
         compositeDisposable.add(io.reactivex.Observable.just(1)
                 .subscribeOn(Schedulers.computation())
-                .flatMap(i -> { return remoteRepository.getCoupons();}).subscribeOn(Schedulers.io())
+                .flatMap(i -> { return remoteRepository.getCoupons();})
+                .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<CouponsList>() {
                     @Override
                     public void accept(CouponsList coupons) throws Exception {
